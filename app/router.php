@@ -7,6 +7,8 @@ $uri = str_replace(BASE_URL, '', $uri);
 
 $routes = [
     '/' => 'controllers/index.php',
+    '/mobiles' => 'controllers/results.php',
+
     '/run' => 'web_scrap/run.php',
     '/add_to_database' => 'web_scrap/add_to_database.php',
     
