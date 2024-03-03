@@ -52,10 +52,10 @@ if(isset($_GET['sort'])){
         $sort = "ASC";
     }
     else if($sort == "toHigh"){
-        $sort = "DESC";
+        $sort = "ASC";
     }
     else{
-        $sort = "ASC";
+        $sort = "DESC";
     }
 }
 
@@ -71,7 +71,7 @@ if(count($error) == 0){
     $result = Results::getResults($mobile, $brand, $min, $max, $sort);
 }
 
-
+$resultCount = count($result);
 
 
 $groupedResults = [];
@@ -81,6 +81,6 @@ foreach ($result as $r) {
     $groupedResults[$shop][] = $r;
 }
 
-show($groupedResults);
+// show($groupedResults);
 
 include("app/views/results.view.php");

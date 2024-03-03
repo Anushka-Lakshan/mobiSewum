@@ -33,7 +33,7 @@ class Results
 
         $query = "SELECT * FROM online_mobiles WHERE name LIKE :mobile " . $sql . " AND price_int BETWEEN :min AND :max ORDER BY price_int " . $sortOrder;
 
-        show($query);
+        // show($query);
 
         $DBdata = array(
             'mobile' => '%' . $mobile . '%',
