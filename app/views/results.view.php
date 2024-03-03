@@ -60,7 +60,7 @@
   <div class="container">
 
     <div class="search-area">
-      <form action="results.php" method="get">
+      <form action="<?=BASE_URL?>/mobiles" method="get">
         <input type="text" name="phone" id="search" placeholder="Enter Mobile Phone name ..." />
         <button type="submit">Search</button>
       </form>
@@ -78,7 +78,7 @@
 
       
 
-    <form action="result.php" method="get" class="filter-card">
+    <form action="<?=BASE_URL?>/mobiles" method="get" class="filter-card">
       <p>Filter options</p>
 
       <div class="filter-brand">
@@ -110,7 +110,7 @@
               <label for="min-price">Min :</label>
             </td>
             <td>
-              <input type="number" name="min-price" id="min-price" />
+              <input type="number" name="min" id="min-price" />
             </td>
           </tr>
 
@@ -119,9 +119,12 @@
               <label for="max-price">Max :</label>
             </td>
             <td>
-              <input type="number" name="max-price" id="max-price" />
+              <input type="number" name="max" id="max-price" />
+
             </td>
           </tr>
+
+          <input type="hidden" name="phone" value="<?=$_GET['phone'] ?? ''?>">
 
 
         </table>

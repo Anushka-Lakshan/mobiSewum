@@ -54,7 +54,7 @@ if ($result->num_rows > 0) {
 
         try {
             // Delete all previous data
-            if ($conn->query($insertQuery) === TRUE) {
+            if ($conn->query($deleteQuery) === TRUE) {
                 echo "Old data deleted successfully. <br>";
             }
             
