@@ -14,14 +14,14 @@ function main_Idealz()
 
     $csvFile = fopen($csvFileName, 'a');
 
-    $crawler = $client->request('GET', 'https://idealz.lk/product-category/smartphones-tablets/');
+    $crawler = $client->request('GET', 'https://idealz.lk/product-category/smartphones-tablets/smartphones/');
 
-    $form = $crawler->filter('form.form-techmarket-wc-ppp')->form(); // Select the form by its submit button or other criteria if available
+    $form = $crawler->filter('form.form-techmarket-wc-ppp:nth-child(1)')->form(); // Select the form by its submit button or other criteria if available
 
     // Fill in the form with the desired value (-1 in this case)
     $form['ppp'] = '-1';
 
-    usleep(500000);
+    usleep(50000);
 
     // Submit the form
     $crawler = $client->submit($form);
@@ -34,7 +34,7 @@ function main_Idealz()
 
 
 
-    $crawler->filter('.product')->each(function ($node) use (&$count, &$products2) {
+    $crawler->filter('.tab-content > .active .products > .product')->each(function ($node) use (&$count, &$products2) {
         // Check if the product is out of stock
         $isOutOfStock = $node->filter('.product.outofstock')->count() > 0;
 
@@ -42,11 +42,27 @@ function main_Idealz()
         $instock = !$isOutOfStock;
 
         // Rest of your code...
-        $title = $node->filter('.woocommerce-loop-product__title')->text();
+        if ($node->filter('.woocommerce-loop-product__title')->count() > 0) {
+            $title = $node->filter('.woocommerce-loop-product__title')->text();
+        }
+        else{
+            $title = 'No title found';
+        }
+
         $img = $node->filter('img.attachment-woocommerce_thumbnail');
-        $unicodeString = $node->filter('.woocommerce-Price-amount')->text();
-        $price = str_replace('රු', 'Rs.', $unicodeString);
-        $DecimalPrice = productPriceToDecimal($price);
+
+        // Get the price
+
+        $price = 'No price found';
+        $DecimalPrice = 0;
+
+        if ($node->filter('.price .woocommerce-Price-amount:nth-child(1) > bdi')->count() > 0) {
+            $unicodeString = $node->filter('.price .woocommerce-Price-amount:nth-child(1) > bdi')->text();
+            $price = str_replace('රු', 'Rs.', $unicodeString);
+            $DecimalPrice = productPriceToDecimal($price);
+        }
+        
+        
         $link = $node->filter('a.woocommerce-LoopProduct-link')->attr('href');
         $shop = 'Idealz';
 

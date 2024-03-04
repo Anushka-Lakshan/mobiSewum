@@ -11,6 +11,7 @@ $brand = "";
 $min = 0;
 $max = 100000000;
 $sort = "ASC";
+$group = true;
 
 if(isset($_GET['phone']) && !empty($_GET['phone']))
 {
@@ -59,13 +60,9 @@ if(isset($_GET['sort'])){
     }
 }
 
-
-// show($mobile);
-// show($brand);
-// show($min);
-// show($max);
-// show($sort);
-// show($error);
+if(isset($_GET['not-group']) && $_GET['not-group'] == "on"){
+    $group = false;
+}
 
 if(count($error) == 0){
     $result = Results::getResults($mobile, $brand, $min, $max, $sort);
@@ -81,6 +78,5 @@ foreach ($result as $r) {
     $groupedResults[$shop][] = $r;
 }
 
-// show($groupedResults);
 
 include("app/views/results.view.php");

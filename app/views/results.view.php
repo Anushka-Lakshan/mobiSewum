@@ -94,9 +94,9 @@
                 </div>
 
                 <div class="filter-group">
-                    <label for="result-group">Group by shops</label>
+                    <label for="result-group">Don't Group by shops</label>
                     <label class="switch">
-                        <input name="group" id="result-group" type="checkbox" <?= isset($_GET['group']) && $_GET['group'] ? 'checked' : '' ?> />    <div></div>
+                        <input name="not-group" id="result-group" type="checkbox" <?= isset($_GET['not-group']) && $_GET['not-group'] ? 'checked' : '' ?> />    <div></div>
                     </label>
                 </div>
 
@@ -173,6 +173,9 @@
 
             <?php
 
+            if($group){
+
+
             foreach ($groupedResults as $key => $value) {
 
                 $brand = $key;
@@ -230,6 +233,45 @@
 
             <?php
             }
+
+        }else{
+            foreach ($result as $mobile) {
+                
+                ?>
+
+<div class="result-card single">
+        <div class="card-top">
+          <div class="shop">
+            <img src="./assets/images/company-logos/geniusMobile.png" alt="geniusMobile">
+            <span><?= $mobile['shop'] ?></span>
+          </div>
+
+        </div>
+
+        <div class="card-bottom">
+          <table class="item-table">
+            <tr>
+              <td>
+                <img src="<?= $mobile['img'] ?>" alt="<?= $mobile['name'] ?>" onerror="this.src='./assets/images/error-phone.png'">
+              </td>
+              <td>
+                <a href="#"><?= $mobile['name'] ?></a>
+                <?=$mobile['in_stock'] == 0 ? "<span class='stock-badge'>Out of stock</span> " : " "?>
+              </td>
+              <td>
+                <?= $mobile['price'] ?>
+              </td>
+            </tr>
+
+            
+          </table>
+        </div>
+      </div>
+
+
+                <?php
+            }
+        }
             ?>
 
             
@@ -242,7 +284,7 @@
 
 
     <script src="./assets/js/app.js"></script>
-    <script src="./assets/js/price-range.js"></script>
+    <!-- <script src="./assets/js/price-range.js"></script> -->
 </body>
 
 </html>

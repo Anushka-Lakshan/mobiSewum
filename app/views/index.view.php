@@ -94,12 +94,12 @@
             <div class="price-input">
               <div class="field">
                 <span>Min</span>
-                <input type="number" class="input-min" value="0" name="p-min">
+                <input type="number" class="input-min" value="0" name="min">
               </div>
               <div class="separator">-</div>
               <div class="field">
                 <span>Max</span>
-                <input type="number" class="input-max" value="759900" name="p-max">
+                <input type="number" class="input-max" value="759900" name="max">
               </div>
             </div>
 

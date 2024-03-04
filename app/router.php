@@ -11,6 +11,10 @@ $routes = [
 
     '/run' => 'web_scrap/run.php',
     '/add_to_database' => 'web_scrap/add_to_database.php',
+
+    // admin routes
+    '/admin-login' => '',
+    '/admin-dashboard' => 'controllers/admin/dashboard.php',
     
 ];
 
