@@ -9,7 +9,7 @@
 
     <link href="./assets/js/datatables.min.css" rel="stylesheet">
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.9/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
@@ -52,7 +52,7 @@
                             <a class="nav-link <?php if ($subpage == 'brands') echo 'active'; ?>" href="<?= BASE_URL ?>/admin-dashboard?page=brands">Brands</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?= BASE_URL ?>/admin-dashboard?page=scraping">Scraping Products</a>
+                            <a class="nav-link <?php if ($subpage == 'scraping') echo 'active'; ?>" href="<?= BASE_URL ?>/admin-dashboard?page=scraping">Scraped Products</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="<?= BASE_URL ?>/admin-dashboard?page=scraping-logs">Scraping Logs</a>

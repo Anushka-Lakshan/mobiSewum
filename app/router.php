@@ -15,6 +15,9 @@ $routes = [
     // admin routes
     '/admin-login' => '',
     '/admin-dashboard' => 'controllers/admin/dashboard.php',
+    '/admin/AJAX/add_brand' => 'controllers/admin/AJAX/add_brand.php',
+    '/admin/AJAX/edit_brand' => 'controllers/admin/AJAX/edit_brand.php',
+    '/admin/AJAX/delete_brand' => 'controllers/admin/AJAX/delete_brand.php',
     
 ];
 

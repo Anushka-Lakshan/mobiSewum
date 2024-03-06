@@ -16,7 +16,7 @@ Class Brands
     {
         $DB = Database::getInstance();
 
-        
+
 
         $DBdata = array(
             'name' => $name,
@@ -37,16 +37,18 @@ Class Brands
 		
 	}
 
-    public static function edit_category($id, $name){
+    public static function edit_brand($id, $name, $logo) {
         $DB = Database::getInstance();
 
         $DBdata = array(
             'name' => $name,
-            'id' => $id
+            'id' => $id,
+            'logo' => $logo
+
         );
 
         
-        $query = "update categories set name = :name where id = :id";
+        $query = "update brands set name = :name, logo = :logo where id = :id";
 
         $result = $DB->write($query, $DBdata);
 
@@ -59,7 +61,7 @@ Class Brands
         }
     }
 
-    public static function delete_category($id){
+    public static function delete_brand($id){
         $DB = Database::getInstance();
 
         $DBdata = array(
@@ -67,8 +69,8 @@ Class Brands
         );
 
         
-        // $query = "update categories set name = :name where id = :id";
-        $query = "delete from categories where id = :id";
+        
+        $query = "delete from brands where id = :id";
 
         $result = $DB->write($query, $DBdata);
 
@@ -81,21 +83,6 @@ Class Brands
         }
     }
 
-    public static function searchCategoriesByName($searchText) {
-        $DB = Database::getInstance();
-    
-        
-            // Use prepared statements to prevent SQL injection
-        $searchText = "%$searchText%";
-        $query = "SELECT * FROM categories WHERE name LIKE :searchText";
-        $data = array('searchText' => $searchText);
-
-        $results = $DB->read($query, $data);
-
-        return $results;
-        
-    }
-    
 
 	
 }
