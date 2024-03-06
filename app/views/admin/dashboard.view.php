@@ -6,12 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mobisewum Admin Dashboard</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="./assets/js/datatables.min.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.9/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
         <a class="navbar-brand" href="#">
-            <img src="<?=BASE_URL?>/assets/images/logo.png" alt="Mobisewum Logo" width="60" height="30" class="d-inline-block align-top bg-white mr-2">
+            <img src="<?= BASE_URL ?>/assets/images/logo.png" alt="Mobisewum Logo" width="60" height="30" class="d-inline-block align-top bg-white mr-2">
             Mobisewum Dashboard</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -31,55 +38,44 @@
         </div>
     </nav>
 
+
+
     <div class="container-fluid main-container">
         <div class="row">
             <nav class="col-2 bg-dark text-white sidebar">
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link active" href="#">Dashboard <span class="sr-only">(current)</span></a>
+                            <a class="nav-link <?php if ($subpage == 'main') echo 'active'; ?>" href="<?= BASE_URL ?>/admin-dashboard">Dashboard <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Orders</a>
+                            <a class="nav-link <?php if ($subpage == 'brands') echo 'active'; ?>" href="<?= BASE_URL ?>/admin-dashboard?page=brands">Brands</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Products</a>
+                            <a class="nav-link" href="<?= BASE_URL ?>/admin-dashboard?page=scraping">Scraping Products</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Customers</a>
+                            <a class="nav-link" href="<?= BASE_URL ?>/admin-dashboard?page=scraping-logs">Scraping Logs</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= BASE_URL ?>/admin-dashboard?page=vendor-products">Vendor Products</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Vendors</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Mobile list</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Other</a>
                         </li>
                     </ul>
                 </div>
             </nav>
 
-            <main role="main" class="col-9 ml-sm-auto col-lg-10 px-md-4">
-                <div class="dashboard-header">
-                    <h1 class="h2">Dashboard</h1>
-                    <p>This is a simple dashboard.</p>
-                </div>
-                <div class="dashboard-cards">
-                    <div class="dashboard-card">Card 1</div>
-                    <div class="dashboard-card">Card 2</div>
-                    <div class="dashboard-card">Card 3</div>
-                </div>
-                <table class="table-dashboard">
-                    <tr>
-                        <th>Column 1</th>
-                        <th>Column 2</th>
-                        <th>Column 3</th>
-                    </tr>
-                    <tr>
-                        <td>Data 1</td>
-                        <td>Data 2</td>
-                        <td>Data 3</td>
-                    </tr>
-                    <tr>
-                        <td>Data 4</td>
-                        <td>Data 5</td>
-                        <td>Data 6</td>
-                    </tr>
-                </table>
-            </main>
+            <?php include("app/views/admin/subpages/$subpage.view.php"); ?>
+
+
         </div>
     </div>
 
@@ -89,7 +85,7 @@
             background-color: #12385e !important;
         }
 
-        .navbar-dark{
+        .navbar-dark {
             background-color: #12385e !important;
         }
 
@@ -118,51 +114,45 @@
             color: #fff;
         }
 
-        .nav-link.active{
+        .nav-link.active {
             color: #fff !important;
             background-color: black;
-            
+
         }
 
         .dashboard-header {
             margin-top: 20px;
             margin-bottom: 20px;
         }
-
-        .dashboard-cards {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-gap: 20px;
-        }
-
-        .dashboard-card {
-            background: #fff;
-            border: 1px solid #ddd;
-            padding: 20px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .table-dashboard {
-            width: 100%;
-            margin-top: 20px;
-            border-collapse: collapse;
-        }
-
-        .table-dashboard th,
-        .table-dashboard td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-
-        .table-dashboard th {
-            background-color: #f8f9fa;
-        }
     </style>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.9/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+
+
+    <!-- data table scripts -->
+    <link href="https://cdn.datatables.net/v/dt/jszip-3.10.1/dt-2.0.1/b-3.0.0/b-colvis-3.0.0/b-html5-3.0.0/b-print-3.0.0/datatables.min.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+
+    <script src="./assets/js/datatables.min.js"></script>
+
+
+    <script>
+        $('#dataTable').DataTable({
+
+            "paging": true,
+            "autoWidth": true,
+            "buttons": [
+                'colvis',
+                'copyHtml5',
+                'csvHtml5',
+                'excelHtml5',
+                'pdfHtml5',
+                'print'
+            ]
+        });
+    </script>
 </body>
 
 </html>
