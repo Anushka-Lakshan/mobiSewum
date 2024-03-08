@@ -1,5 +1,11 @@
 <?php
 
+if(!isset($_SESSION['admin_name'])){
+    header("Location: ".BASE_URL."/admin-login");
+    die;
+    
+}
+
 $subpage = 'main';
 
 if(isset($_GET['page'])) {

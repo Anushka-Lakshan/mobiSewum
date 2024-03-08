@@ -12,6 +12,9 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.9/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
 
 </head>
 
@@ -54,9 +57,7 @@
                         <li class="nav-item">
                             <a class="nav-link <?php if ($subpage == 'scraping') echo 'active'; ?>" href="<?= BASE_URL ?>/admin-dashboard?page=scraping">Scraped Products</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?= BASE_URL ?>/admin-dashboard?page=scraping-logs">Scraping Logs</a>
-                        </li>
+
                         <li class="nav-item">
                             <a class="nav-link" href="<?= BASE_URL ?>/admin-dashboard?page=vendor-products">Vendor Products</a>
                         </li>
@@ -67,11 +68,32 @@
                             <a class="nav-link" href="#">Mobile list</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Other</a>
+                            <a class="nav-link <?php if ($subpage == 'admins') echo 'active'; ?>" href="<?= BASE_URL ?>/admin-dashboard?page=admins">Admins</a>
                         </li>
                     </ul>
                 </div>
             </nav>
+
+            <?php
+
+            if (isset($_SESSION['temp_msg'])) {
+                echo '
+                <script>
+                    Swal.fire({
+                        title: "' . $_SESSION['temp_msg'] . '",
+                        text: "' . (isset($_SESSION['temp_msg_secondery']) ? $_SESSION['temp_msg_secondery'] : '') . '",
+                        icon: "' . (isset($_SESSION['temp_msg_type']) ? $_SESSION['temp_msg_type'] : 'success') . '",
+                        showCancelButton: false,
+                        confirmButtonText: "Continue"
+                    });
+                </script>
+                ';
+                unset($_SESSION['temp_msg']);
+                unset($_SESSION['temp_msg_secondery']);
+                unset($_SESSION['temp_msg_type']);
+            }
+
+            ?>
 
             <?php include("app/views/admin/subpages/$subpage.view.php"); ?>
 
@@ -126,7 +148,7 @@
         }
     </style>
 
-    
+
 
 
     <!-- data table scripts -->
@@ -134,6 +156,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+
 
     <script src="./assets/js/datatables.min.js"></script>
 

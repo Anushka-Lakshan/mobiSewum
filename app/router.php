@@ -13,11 +13,15 @@ $routes = [
     '/add_to_database' => 'web_scrap/add_to_database.php',
 
     // admin routes
-    '/admin-login' => '',
+    '/admin-login' => 'controllers/admin/login.php',
     '/admin-dashboard' => 'controllers/admin/dashboard.php',
+    '/admin/logout' => 'controllers/admin/admin-logout.php',
     '/admin/AJAX/add_brand' => 'controllers/admin/AJAX/add_brand.php',
     '/admin/AJAX/edit_brand' => 'controllers/admin/AJAX/edit_brand.php',
     '/admin/AJAX/delete_brand' => 'controllers/admin/AJAX/delete_brand.php',
+    '/admin/AJAX/getScrapedProducts' => 'controllers/admin/AJAX/getScrapedProducts.php',
+    '/admin/AJAX/getScrapedRecords' => 'controllers/admin/AJAX/getScrapedRecords.php',
+    '/admin/AJAX/add_admin' => 'controllers/admin/AJAX/add_admin.php',
     
 ];
 

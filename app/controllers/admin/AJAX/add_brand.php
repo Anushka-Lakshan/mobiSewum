@@ -1,8 +1,8 @@
 <?php
 
-// if(!isset($_SESSION['admin_name'])){
-//     die;
-// }
+if(!isset($_SESSION['admin_name'])){
+    die;
+}
 
 if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest') {
 
