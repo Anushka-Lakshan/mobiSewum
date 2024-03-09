@@ -35,11 +35,29 @@
                     <a class="nav-link" href="#">Profile</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Logout</a>
+                    <a class="nav-link" onclick="logout()" href="javascript:void(0)">Logout</a>
                 </li>
             </ul>
         </div>
     </nav>
+
+    <script>
+                  function logout() {
+                    Swal.fire({
+                      title: 'Do you want to log out?',
+                      icon: 'question',
+                      showCancelButton: true,
+                      confirmButtonColor: '#FF0000', // Red color for "Yes"
+                      confirmButtonText: 'Yes',
+                      cancelButtonText: 'Cancel'
+                    }).then((result) => {
+                      if (result.isConfirmed) {
+                        // User clicked "Yes," redirect to /logout
+                        window.location.href = '<?= BASE_URL ?>/admin-logout';
+                      }
+                    });
+                  }
+                </script>
 
 
 

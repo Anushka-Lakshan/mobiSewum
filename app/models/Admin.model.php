@@ -59,8 +59,6 @@ class Admin
 
             if ($result) {
 
-                sweetAlert("New Member Added", "success");
-
                 return array('success' => true);
             } else {
                 return array('success' => false, 'errors' => $errors);
@@ -133,24 +131,78 @@ class Admin
         return $DB->read("select id,name,username from admins order by id asc");
     }
 
-    public static function deleteAdmin($id)
+    public static function deleteAdmin($id, $uname)
     {
 
         $DB = Database::getInstance();
         $DBdata = array(
-            'id' => $id
+            'id' => $id,
+            'username' => $uname
         );
 
-        $query = "delete from admins where id = :id";
+        $query = "delete from admins where id = :id and username = :username limit 1";
 
         $result = $DB->write($query, $DBdata);
 
         if ($result) {
-            return true;
+            return ['success' => true];
         }else{
-            return false;
+            return ['success' => false , 'error' => 'failed to delete'];
         }
 
         
     }
+
+
+    
+    public static function edit_Admin($id, $name, $username, $password)
+    {
+
+        $errors = array();
+        $db = Database::getInstance();
+
+        include_once "app/core/Validator.php";
+
+        $Validate = new Validator();
+
+        if (!Validator::string($name, 1, 50)) {
+            $errors[''] = 'The Name of no more than 50 characters is required.';
+        }
+
+        if (!Validator::string($username, 6, 30)) {
+            array_push($errors, 'Username of no more than 30 characters is required.');
+        }
+
+        
+
+
+        if (!Validator::password($password)) {
+            array_push($errors, 'password must have more than 6 characters, must have Capital and Simple letters with numbers and special Characters');
+        }
+
+        if (!empty($errors)) {
+            return ['success' => false, 'errors' => $errors];
+        }
+
+        $DBdata = array(
+            'id' => $id,
+            'name' => $name,
+            'username' => $username,
+            'password' => $password
+        );
+
+        $DBdata['password'] = hash('sha3-256', $DBdata['password']);
+
+        $query = "update admins set name = :name, username = :username, password = :password where id = :id";
+
+        $result = $db->write($query, $DBdata);
+
+        if ($result) {
+            return array('success' => true);
+        } else {
+            return array('success' => false, 'errors' => $errors);
+        }
+
+    }
+
 }
