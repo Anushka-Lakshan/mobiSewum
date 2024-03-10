@@ -9,7 +9,7 @@ $routes = [
     '/' => 'controllers/index.php',
     '/mobiles' => 'controllers/results.php',
 
-    '/run' => 'web_scrap/run.php',
+    '/run-scrap' => 'web_scrap/run.php',
     '/add_to_database' => 'web_scrap/add_to_database.php',
 
     // admin routes
@@ -24,6 +24,7 @@ $routes = [
     '/admin/AJAX/add_admin' => 'controllers/admin/AJAX/add_admin.php',
     '/admin/AJAX/edit_admin' => 'controllers/admin/AJAX/edit_admin.php',
     '/admin/AJAX/delete_admin' => 'controllers/admin/AJAX/delete_admin.php',
+    '/admin/AJAX/add_online_vendor' => 'controllers/admin/AJAX/add_online_vendor.php',
     
 ];
 

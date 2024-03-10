@@ -1,7 +1,11 @@
 <?php
 include_once 'functions.php';
 
+// Check if admin is logged in
 
+if(!isset($_SESSION['admin_name'])){
+    header("Location: " .BASE_URL . "/404");
+}
 
 
 // Connect to MySQL
@@ -78,5 +82,8 @@ if ($result->num_rows > 0) {
 
 // Close database connection
 $conn->close();
+
+
+echo "<br> <a href='" . BASE_URL . "/admin-dashboard?page=scraping'><button type='button' style='margin-top: 10px; padding: 10px; background-color: #4CAF50; color: white; border: none; border-radius: 5px;'>Back to Admin Panel</button> </a>";
 
 ?>

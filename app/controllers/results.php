@@ -1,5 +1,9 @@
 <?php
 
+include("app/models/Brands.model.php");
+
+$brands = Brands::get_all();
+
 include("app/models/results.model.php");
 include("app/core/Validator.php");
 
@@ -70,13 +74,24 @@ if(count($error) == 0){
 
 $resultCount = count($result);
 
+// show($result);
+
 
 $groupedResults = [];
 
 foreach ($result as $r) {
     $shop = $r['shop'];
-    $groupedResults[$shop][] = $r;
+
+    $groupedResults[$shop]['items'][] = $r;
+    $groupedResults[$shop]['img'] = $r['img'];
+    $groupedResults[$shop]['vendor_link'] = $r['vendor_link'];
+    $groupedResults[$shop]['vendor'] = $r['vendor'];
+    $groupedResults[$shop]['logo'] = $r['logo'];
+
+
 }
+
+// show($groupedResults);
 
 
 include("app/views/results.view.php");

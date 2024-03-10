@@ -6,6 +6,11 @@ require_once 'functions.php';
 set_time_limit(1000);
 
 
+
+if(!isset($_SESSION['admin_name'])){
+    header("Location: " .BASE_URL . "/404");
+}
+
 // Assuming 'scrap' is a subdirectory of the current directory
 $scrapFolder = __DIR__ . '/scrap/';
 
@@ -66,6 +71,8 @@ if (rename($oldCsvFileName, $destinationFolder . '/' . $newCsvFileName)) {
 
     if ($con->query($sql) === TRUE) {
         echo "Record inserted successfully";
+
+        sweetAlert('Scraping Completed. {$newCsvFileName}', 'success');
     } else {
         echo "Error inserting record: " . $con->error;
     }
@@ -74,3 +81,5 @@ if (rename($oldCsvFileName, $destinationFolder . '/' . $newCsvFileName)) {
 } else {
     echo "Error moving or renaming the file.";
 }
+
+echo "<br> <a href='" . BASE_URL . "/admin-dashboard?page=scraping'><button type='button' style='margin-top: 10px; padding: 10px; background-color: #4CAF50; color: white; border: none; border-radius: 5px;'>Back to Admin Panel</button> </a>";

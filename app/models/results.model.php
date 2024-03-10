@@ -12,6 +12,10 @@ class Results
 
         $nor = false;
 
+        if($brand == "all"){
+            $brand = "";
+        }
+
         foreach ($version_divider as $d) {
             if (strpos($mobile, $d) !== false) {
                 $nor = true;
@@ -24,21 +28,23 @@ class Results
         if (!$nor) {
 
             foreach ($version_divider as $d) {
-                $sql = $sql . "AND name NOT LIKE '%{$d}%'";
+                $sql = $sql . "AND online_mobiles.name NOT LIKE '%{$d}%'";
             }
         }
 
         
         $sortOrder = ($sort == 'ASC' || $sort == 'DESC') ? $sort : 'ASC';
 
-        $query = "SELECT * FROM online_mobiles WHERE name LIKE :mobile " . $sql . " AND price_int BETWEEN :min AND :max ORDER BY price_int " . $sortOrder;
+        $query = "SELECT online_mobiles.*, online_vendors.logo, online_vendors.name AS vendor, online_vendors.link AS vendor_link FROM online_mobiles INNER JOIN online_vendors ON online_mobiles.shop
+        = online_vendors.shop WHERE online_mobiles.name LIKE :mobile AND online_mobiles.name LIKE :brand " . $sql . " AND price_int BETWEEN :min AND :max ORDER BY online_mobiles.price_int " . $sortOrder;
 
         // show($query);
 
         $DBdata = array(
             'mobile' => '%' . $mobile . '%',
             'min' => $min,
-            'max' => $max
+            'max' => $max,
+            'brand' => '%' . $brand . '%',
         );
 
         return $DB->read($query, $DBdata);

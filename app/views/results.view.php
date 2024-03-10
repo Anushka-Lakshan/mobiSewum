@@ -53,7 +53,7 @@
 
             <h1 class="results-readline">Results for: <?= $mobile ?></h1>
 
-            
+
 
             <p class="results-count"><?= $resultCount === 0 ? 'No results found' : $resultCount . ' results found' ?></p>
         </div>
@@ -86,17 +86,22 @@
 
                 <div class="filter-brand">
                     <label for="result-brand">Search by Brand:</label>
+                    
                     <select name="brand" id="result-brand">
                         <option value="all">All</option>
-                        <option value="samsung">Samsung</option>
-                        <option value="apple">Apple</option>
+
+                        <?php foreach ($brands as $brand) : ?>
+                            <option value="<?= strtolower($brand['name']) ?>" <?= isset($_GET['brand']) && $_GET['brand'] === strtolower($brand['name']) ? 'selected' : '' ?>><?= $brand['name'] ?></option>
+
+                        <?php endforeach; ?>
                     </select>
                 </div>
 
                 <div class="filter-group">
                     <label for="result-group">Don't Group by shops</label>
                     <label class="switch">
-                        <input name="not-group" id="result-group" type="checkbox" <?= isset($_GET['not-group']) && $_GET['not-group'] ? 'checked' : '' ?> />    <div></div>
+                        <input name="not-group" id="result-group" type="checkbox" <?= isset($_GET['not-group']) && $_GET['not-group'] ? 'checked' : '' ?> />
+                        <div></div>
                     </label>
                 </div>
 
@@ -120,7 +125,7 @@
                                 <label for="min-price">Min :</label>
                             </td>
                             <td>
-                                <input type="number" name="min" id="min-price" value="<?= $_GET['min'] ?? '' ?>"/>
+                                <input type="number" name="min" id="min-price" value="<?= $_GET['min'] ?? '' ?>" />
                             </td>
                         </tr>
 
@@ -129,7 +134,7 @@
                                 <label for="max-price">Max :</label>
                             </td>
                             <td>
-                                <input type="number" name="max" id="max-price" value="<?= $_GET['max'] ?? '' ?>"/>
+                                <input type="number" name="max" id="max-price" value="<?= $_GET['max'] ?? '' ?>" />
 
                             </td>
                         </tr>
@@ -162,119 +167,117 @@
         <!-- search results start -->
         <div class="result-container">
 
-        <?php
-
-        if ($resultCount === 0) {
-            echo '<p style="text-align:center"> Sorry! , No results found</p>';
-
-        }
-
-        ?>
-
             <?php
 
-            if($group){
-
-
-            foreach ($groupedResults as $key => $value) {
-
-                $brand = $key;
-
-                $count = count($value);
-
-            ?>
-                <div class="result-card">
-                    <div class="card-top">
-                        <div class="shop">
-                            <img src="./assets/images/company-logos/geniusMobile.png" alt="geniusMobile">
-                            <span><?= $brand ?></span>
-                        </div>
-
-                        <div class="item-count">
-                            <?= $count ?> mobiles
-                        </div>
-                    </div>
-
-                    <div class="card-bottom">
-                        <table class="item-table">
-
-                            <?php
-
-                            foreach ($value as $mobile) {
-
-                                ?>
-                            
-                                <tr>
-                                <td>
-                                    <img src='<?=$mobile['img']?>' alt='<?=$mobile['name']?>' onerror="this.src='./assets/images/error-phone.png'">
-                                </td>
-                                <td>
-                                    <a href='<?=$mobile['link']?>' target='_blank' > <?= $mobile['name'] ?> </a>
-
-                                    <?=$mobile['in_stock'] == 0 ? "<span class='stock-badge'>Out of stock</span> " : " "?>
-
-                                    
-                                    
-                                </td>
-                                <td>
-                                    <?= $mobile['price'] ?>
-                                </td>
-                                </tr>
-
-                                <?php
-                            }
-
-                            ?>
-
-                        </table>
-                    </div>
-                </div>
-
-
-            <?php
+            if ($resultCount === 0) {
+                echo '<p style="text-align:center"> Sorry! , No results found</p>';
             }
 
-        }else{
-            foreach ($result as $mobile) {
-                
-                ?>
+            ?>
 
-<div class="result-card single">
-        <div class="card-top">
-          <div class="shop">
-            <img src="./assets/images/company-logos/geniusMobile.png" alt="geniusMobile">
-            <span><?= $mobile['shop'] ?></span>
-          </div>
+            <?php
 
-        </div>
+            if ($group) {
 
-        <div class="card-bottom">
-          <table class="item-table">
-            <tr>
-              <td>
-                <img src="<?= $mobile['img'] ?>" alt="<?= $mobile['name'] ?>" onerror="this.src='./assets/images/error-phone.png'">
-              </td>
-              <td>
-                <a href="#"><?= $mobile['name'] ?></a>
-                <?=$mobile['in_stock'] == 0 ? "<span class='stock-badge'>Out of stock</span> " : " "?>
-              </td>
-              <td>
-                <?= $mobile['price'] ?>
-              </td>
-            </tr>
 
-            
-          </table>
-        </div>
-      </div>
+                foreach ($groupedResults as $key => $value) {
+
+                    $brand = $value['vendor'];
+
+                    $count = count($value['items']);
+
+            ?>
+                    <div class="result-card">
+                        <div class="card-top">
+                            <div class="shop">
+                                <img src="<?= BASE_URL ?>/assets/images/company-logos/<?=$value['logo'] ?>" alt="geniusMobile">
+                                <span> <a href="<?= $value['vendor_link'] ?>" target="_blank"><?= $brand ?> </a></span>
+                            </div>
+
+                            <div class="item-count">
+                                <?= $count ?> mobiles
+                            </div>
+                        </div>
+
+                        <div class="card-bottom">
+                            <table class="item-table">
+
+                                <?php
+
+                                foreach ($value['items'] as $mobile) {
+
+                                ?>
+
+                                    <tr>
+                                        <td>
+                                            <img src='<?= $mobile['img'] ?>' alt='<?= $mobile['name'] ?>' onerror="this.src='./assets/images/error-phone.png'">
+                                        </td>
+                                        <td>
+                                            <a href='<?= $mobile['link'] ?>' target='_blank'> <?= $mobile['name'] ?> </a>
+
+                                            <?= $mobile['in_stock'] == 0 ? "<span class='stock-badge'>Out of stock</span> " : " " ?>
+
+
+
+                                        </td>
+                                        <td>
+                                            <?= $mobile['price'] ?>
+                                        </td>
+                                    </tr>
+
+                                <?php
+                                }
+
+                                ?>
+
+                            </table>
+                        </div>
+                    </div>
 
 
                 <?php
+                }
+            } else {
+                foreach ($result as $mobile) {
+
+                ?>
+
+                    <div class="result-card single">
+                        <div class="card-top">
+                            <div class="shop">
+                                <img src="./assets/images/company-logos/geniusMobile.png" alt="geniusMobile">
+                                <span><?= $mobile['shop'] ?></span>
+                            </div>
+
+                        </div>
+
+                        <div class="card-bottom">
+                            <table class="item-table">
+                                <tr>
+                                    <td>
+                                        <img src="<?= $mobile['img'] ?>" alt="<?= $mobile['name'] ?>" onerror="this.src='./assets/images/error-phone.png'">
+                                    </td>
+                                    <td>
+                                        <a href="<?= $mobile['link'] ?>" target="_blank"><?= $mobile['name'] ?></a>
+                                        <?= $mobile['in_stock'] == 0 ? "<span class='stock-badge'>Out of stock</span> " : " " ?>
+                                    </td>
+                                    <td>
+                                        <?= $mobile['price'] ?>
+                                    </td>
+                                </tr>
+
+
+                            </table>
+                        </div>
+                    </div>
+
+
+            <?php
+                }
             }
-        }
             ?>
 
-            
+
 
 
         </div>

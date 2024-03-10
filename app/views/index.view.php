@@ -81,8 +81,11 @@
             <label for="SF-brand">Search by Brand:</label>
             <select name="brand" id="SF-brand">
               <option value="all">All</option>
-              <option value="samsung">Samsung</option>
-              <option value="apple">Apple</option>
+
+            <?php foreach ($brands as $brand) : ?>
+              <option value="<?=strtolower($brand['name'])?>"><?=$brand['name']?></option>
+
+            <?php endforeach; ?>
             </select>
           </div>
 
