@@ -105,6 +105,14 @@
                     </label>
                 </div>
 
+                <div class="filter-group">
+                    <label for="stock-group">Only In stock</label>
+                    <label class="switch">
+                        <input name="in-stock" id="stock-group" type="checkbox" <?= isset($_GET['in-stock']) && $_GET['in-stock'] ? 'checked' : '' ?> />
+                        <div></div>
+                    </label>
+                </div>
+
                 <div class="result-filter">
                     <label for="result-sort">Sort by: </label>
                     <select name="sort" id="result-sort">
@@ -245,8 +253,8 @@
                     <div class="result-card single">
                         <div class="card-top">
                             <div class="shop">
-                                <img src="./assets/images/company-logos/geniusMobile.png" alt="geniusMobile">
-                                <span><?= $mobile['shop'] ?></span>
+                                <img src="<?= BASE_URL ?>/assets/images/company-logos/<?=$mobile['logo'] ?>" alt="geniusMobile">
+                                <span><a href="<?= $mobile['vendor_link'] ?>" target="_blank"><?= $mobile['shop'] ?> </a> </span>
                             </div>
 
                         </div>

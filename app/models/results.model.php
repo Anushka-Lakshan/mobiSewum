@@ -3,7 +3,7 @@
 class Results
 {
 
-    public static function getResults($mobile, $brand, $min, $max, $sort)
+    public static function getResults($mobile, $brand, $min, $max, $sort, $only_inStock)
     {
 
         $DB = Database::getInstance();
@@ -30,6 +30,10 @@ class Results
             foreach ($version_divider as $d) {
                 $sql = $sql . "AND online_mobiles.name NOT LIKE '%{$d}%'";
             }
+        }
+
+        if($only_inStock){
+            $sql = $sql . "AND online_mobiles.in_stock = 1";
         }
 
         

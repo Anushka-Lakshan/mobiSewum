@@ -16,6 +16,7 @@ $min = 0;
 $max = 100000000;
 $sort = "ASC";
 $group = true;
+$only_inStock = false;
 
 if(isset($_GET['phone']) && !empty($_GET['phone']))
 {
@@ -68,8 +69,12 @@ if(isset($_GET['not-group']) && $_GET['not-group'] == "on"){
     $group = false;
 }
 
+if(isset($_GET['in-stock']) && $_GET['in-stock'] == "on"){
+    $only_inStock = true;
+}
+
 if(count($error) == 0){
-    $result = Results::getResults($mobile, $brand, $min, $max, $sort);
+    $result = Results::getResults($mobile, $brand, $min, $max, $sort, $only_inStock);
 }
 
 $resultCount = count($result);
