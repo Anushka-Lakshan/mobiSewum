@@ -4,7 +4,7 @@ $errors = array();
 
 if($_SERVER['REQUEST_METHOD'] == "POST") {
 
-    show($_POST);
+    // show($_POST);
 
     include 'app/models/Vendor.model.php';
 

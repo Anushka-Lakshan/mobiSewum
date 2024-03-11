@@ -8,7 +8,7 @@ Class ScrapedProducts
 	{
 
 		$DB = Database::getInstance();
-		return $DB->read("select * from online_mobiles order by id asc");
+		return $DB->read("select * from online_mobiles where scraped = 1 order by id asc");
 
 	}
 

@@ -117,7 +117,7 @@ Class Vendor
 
             if (self::Login_to_system($email, $password)){
 
-                sweetAlert("Login success!","welcome back " . $_SESSION['Customer_Name'],"success");
+                sweetAlert("Login success!","welcome back " . $_SESSION['username'],"success");
                 header("Location: ".BASE_URL."/vendor-dashboard");
                 die;
             }else{
@@ -144,7 +144,7 @@ Class Vendor
         $arr['email'] = $email;
         $arr['password'] = hash('sha3-256',$password);
 
-        show($arr);
+        // show($arr);
 
         $check = $db->read($sql,$arr);
 

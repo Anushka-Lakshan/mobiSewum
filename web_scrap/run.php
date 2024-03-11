@@ -67,7 +67,7 @@ if (rename($oldCsvFileName, $destinationFolder . '/' . $newCsvFileName)) {
     //add database log
     $con = mysqli_connect('localhost', 'root', '', 'mobisewum');
 
-    $sql = "INSERT INTO scrap_log (file_name, status) VALUES ('{$newCsvFileName}', '{$success}');";
+    $sql = "INSERT INTO scrap_log (file_name, status, run_by) VALUES ('{$newCsvFileName}', '{$success}', '{$_SESSION['admin_name']}');";
 
     if ($con->query($sql) === TRUE) {
         echo "Record inserted successfully";

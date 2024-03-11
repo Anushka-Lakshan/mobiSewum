@@ -109,4 +109,4 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 }
 
 
-include 'app/views/create_shop.view.php';
+include 'app/views/vendor/create_shop.view.php';

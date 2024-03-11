@@ -33,7 +33,7 @@ if ($result->num_rows > 0) {
         $csvData = array_map('str_getcsv', file($csvFilePath));
 
         // Insert data into 'products' table
-        $insertQuery = "INSERT INTO online_mobiles (name, price,price_int, img, link, shop, in_stock) 
+        $insertQuery = "INSERT INTO online_mobiles (name, price,price_int, img, link, shop, in_stock, scraped) 
         VALUES ";
         
         // Assuming CSV file structure: name, price, img_url, link, shop, in_stock
@@ -46,14 +46,14 @@ if ($result->num_rows > 0) {
             $shop = $row[5];
             $in_stock = $row[6] === '1' ? 1 : 0;
 
-            $insertQuery .= "('$name', '$price', $priceInt, '$img_url', '$link', '$shop', $in_stock), ";
+            $insertQuery .= "('$name', '$price', $priceInt, '$img_url', '$link', '$shop', $in_stock, 1), ";
 
             
         }
 
         $insertQuery = rtrim($insertQuery, ', ');
 
-        $deleteQuery = 'DELETE FROM online_mobiles';
+        $deleteQuery = 'DELETE FROM online_mobiles WHERE scraped = 1';
 
 
         try {
