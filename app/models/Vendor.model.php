@@ -78,7 +78,7 @@ Class Vendor
                 self::Login_to_system($data['Email'], $data['Password']);
                 sweetAlert("Sign up success!","welcome to mobisewum!, Please Login to continue","success");
 
-                header("Location: ".BASE_URL."/create-shop");
+                header("Location: ".BASE_URL."/create_shop");
                 die;
                 
             }
@@ -154,6 +154,7 @@ Class Vendor
 
             $_SESSION['Vendor_id'] = $check[0]['id'];
             $_SESSION['username'] = $check[0]['username'];
+            $_SESSION['have_shop'] = $check[0]['have_shop'] == 1 ? true : false;
 
             session_regenerate_id();
             

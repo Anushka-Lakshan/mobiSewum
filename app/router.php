@@ -9,6 +9,9 @@ $routes = [
     '/' => 'controllers/index.php',
     '/mobiles' => 'controllers/results.php',
     '/List_prices' => 'controllers/vendor_sign_up.php',
+    '/create_shop' => 'controllers/create_shop.php',
+    '/vendor-logout' => 'controllers/vendor-logout.php',
+    '/vendor-dashboard' => 'controllers/vendor-dashboard.php',
 
     '/run-scrap' => 'web_scrap/run.php',
     '/add_to_database' => 'web_scrap/add_to_database.php',
