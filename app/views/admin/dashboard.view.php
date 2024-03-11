@@ -77,10 +77,10 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" <?php if ($subpage == 'vendor-products') echo 'active'; ?> href="<?= BASE_URL ?>/admin-dashboard?page=vendor-products">Vendor Products</a>
+                            <a class="nav-link <?php if ($subpage == 'vendor-products') echo 'active'; ?>"  href="<?= BASE_URL ?>/admin-dashboard?page=vendor-products">Vendor Products</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" <?php if ($subpage == 'online-vendors') echo 'active'; ?> href="<?= BASE_URL ?>/admin-dashboard?page=online-vendors"> Online Vendors</a>
+                            <a class="nav-link <?php if ($subpage == 'online-vendors') echo 'active'; ?> " href="<?= BASE_URL ?>/admin-dashboard?page=online-vendors"> Online Vendors</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Mobile list</a>

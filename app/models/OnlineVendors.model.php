@@ -52,7 +52,7 @@ Class OnlineVendors
         );
 
         
-        $query = "update brands set name = :name, logo = :logo, shop = :shop, link = :link where id = :id";
+        $query = "update online_vendors set name = :name, logo = :logo, shop = :shop, link = :link where id = :id";
 
         $result = $DB->write($query, $DBdata);
 

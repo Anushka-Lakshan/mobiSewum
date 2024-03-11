@@ -8,9 +8,11 @@ $uri = str_replace(BASE_URL, '', $uri);
 $routes = [
     '/' => 'controllers/index.php',
     '/mobiles' => 'controllers/results.php',
+    '/List_prices' => 'controllers/vendor_sign_up.php',
 
     '/run-scrap' => 'web_scrap/run.php',
     '/add_to_database' => 'web_scrap/add_to_database.php',
+    
 
     // admin routes
     '/admin-login' => 'controllers/admin/login.php',
@@ -25,6 +27,7 @@ $routes = [
     '/admin/AJAX/edit_admin' => 'controllers/admin/AJAX/edit_admin.php',
     '/admin/AJAX/delete_admin' => 'controllers/admin/AJAX/delete_admin.php',
     '/admin/AJAX/add_online_vendor' => 'controllers/admin/AJAX/add_online_vendor.php',
+    '/admin/AJAX/edit_online_vendor' => 'controllers/admin/AJAX/edit_online_vendor.php',
     
 ];
 

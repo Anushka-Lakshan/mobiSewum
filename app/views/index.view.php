@@ -12,7 +12,7 @@
   <div class="container-nav">
     <header class="site-header">
       <div class="header__content--flow">
-        <section class="header-content--left">
+        <!-- <section class="header-content--left">
           <a href="#" class="brand-logo">
             <img src="./assets/images/logo.png" alt="Mobisewum logo" />
           </a>
@@ -55,7 +55,8 @@
               </li>
             </ul>
           </nav>
-        </section>
+        </section> -->
+        <?php require 'partials/top_nav.view.php'; ?>
       </div>
     </header>
   </div>
