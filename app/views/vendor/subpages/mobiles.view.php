@@ -3,14 +3,13 @@
 
 include "app/models/VendorProducts.model.php";
 
-$Products = VendorProducts::get_all();
+$Products = VendorProducts::get_by_vendor($_SESSION['Vendor_id']);
 
-// show($scrapedProducts);
+
 
 ?>
 
 <main role="main" class="col-9 ml-sm-auto col-lg-10 px-md-4 pt-3 d-block">
-
 
 
     <div class="row" style="width: 100%;">
@@ -28,9 +27,10 @@ $Products = VendorProducts::get_all();
                         <th>Mobile Name</th>
                         <th>Price</th>
                         <th>Image</th>
-                        <th>Link</th>
-                        <th>Shop</th>
+                        <!-- <th>Link</th> -->
+                        <!-- <th>Shop</th> -->
                         <th>In Stock</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
 
@@ -44,10 +44,13 @@ $Products = VendorProducts::get_all();
                             <td><?= $Pro['id'] ?></td>
                             <td><?= $Pro['name'] ?></td>
                             <td><?= $Pro['price'] ?></td>
-                            <td><img src="<?= $Pro['img'] ?>" alt="" width="50px"></td>
-                            <td><a href="<?= $Pro['link'] ?>" target="_blank"><?= $Pro['link'] ?></a></td>
-                            <td><?= $Pro['shop'] ?></td>
+                            <td><img src="<?=BASE_URL?>/assets/images/mobile-images/<?= $Pro['img'] ?>" alt="" width="50px"></td>
+                            
                             <td><?= $Pro['in_stock'] == 1 ? "Yes" : "No" ?></td>
+                            <td> 
+                                <button class="btn btn-primary" onclick="window.location.href='<?= BASE_URL ?>/vendor-dashboard?page=edit_mobile&id=<?= $Pro['id'] ?>'">Edit</button>
+                                <button class="btn btn-danger" onclick="window.location.href='<?= BASE_URL ?>/vendor-dashboard?page=delete_mobile&id=<?= $Pro['id'] ?>'">Delete</button>
+                            </td>
 
                         </tr>
 

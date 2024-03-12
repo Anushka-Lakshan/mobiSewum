@@ -12,6 +12,7 @@ $routes = [
     '/create_shop' => 'controllers/vendor/create_shop.php',
     '/vendor-logout' => 'controllers/vendor/vendor-logout.php',
     '/vendor-dashboard' => 'controllers/vendor/vendor-dashboard.php',
+    '/browseByBrand' => 'controllers/browseByBrand.php',
 
     '/run-scrap' => 'web_scrap/run.php',
     '/add_to_database' => 'web_scrap/add_to_database.php',

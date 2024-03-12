@@ -15,7 +15,7 @@
                 </a>
             </li>
             <li class="list-item">
-                <a class="nav__link" href="#">
+                <a class="nav__link" href="<?= BASE_URL ?>/browseByBrand">
                     Browse by Brands
                 </a>
             </li>

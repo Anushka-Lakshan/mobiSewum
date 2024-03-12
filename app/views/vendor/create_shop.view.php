@@ -17,7 +17,7 @@
     <div class="container-nav">
         <header class="site-header">
             <div class="header__content--flow">
-                <?php require 'partials/top_nav.view.php'; ?>
+                <?php include 'app/views/partials/top_nav.view.php'; ?>
             </div>
         </header>
     </div>
