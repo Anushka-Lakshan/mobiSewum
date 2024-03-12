@@ -1,6 +1,6 @@
 <?php
 
-if(!isset($_SESSION['Vendor_id']) && !isset($_SESSION['username'])) {
+if(!isset($_SESSION['Vendor_id'])) {
     header("Location: ".BASE_URL."/List_prices");
     die();
 }

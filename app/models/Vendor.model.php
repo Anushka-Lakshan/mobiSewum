@@ -117,7 +117,7 @@ Class Vendor
 
             if (self::Login_to_system($email, $password)){
 
-                sweetAlert("Login success!","welcome back " . $_SESSION['username'],"success");
+                // sweetAlert("Login success!","welcome back " . $_SESSION['username'],"success");
                 header("Location: ".BASE_URL."/vendor-dashboard");
                 die;
             }else{

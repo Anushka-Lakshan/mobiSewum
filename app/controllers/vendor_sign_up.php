@@ -1,5 +1,9 @@
 <?php
 
+if (isset($_SESSION['Vendor_id'])){
+    header('location: ' . BASE_URL . '/vendor-dashboard');
+}
+
 $errors = array();
 
 if($_SERVER['REQUEST_METHOD'] == "POST") {
