@@ -55,4 +55,45 @@ class VendorProducts
 			return false;
 		}
 	}
+
+
+	public static function edit_mobile($id, $name, $price, $in_stock, $image)
+    {
+        $DB = Database::getInstance();
+
+        include_once "app/core/Validator.php";
+
+        $DBdata = array(
+            'id' => $id,
+            'name' => Validator::sanitizeInput($name),
+            'price' => 'Rs.' . number_format($price, 2, '.', ','),
+            'price_int' => $price,
+            'in_stock' => $in_stock == true ? 1 : 0,
+            'img' => $image,
+            'vendor_id' => $_SESSION['Vendor_id'],
+        );
+
+        $query = "UPDATE online_mobiles 
+                  SET name = :name, price = :price, price_int = :price_int, 
+                      in_stock = :in_stock, img = :img 
+                  WHERE id = :id AND vendor_id = :vendor_id";
+
+        $result = $DB->write($query, $DBdata);
+
+        return $result ? true : false;
+    }
+
+    public static function delete_mobile($id)
+    {
+        $DB = Database::getInstance();
+
+        $query = "DELETE FROM online_mobiles 
+                  WHERE id = :id AND vendor_id = :vendor_id";
+
+        $result = $DB->write($query, ['id' => $id, 'vendor_id' => $_SESSION['Vendor_id']]);
+
+        return $result ? true : false;
+    }
+
+	
 }

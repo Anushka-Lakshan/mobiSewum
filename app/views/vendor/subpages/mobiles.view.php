@@ -49,7 +49,7 @@ $Products = VendorProducts::get_by_vendor($_SESSION['Vendor_id']);
                             <td><?= $Pro['in_stock'] == 1 ? "Yes" : "No" ?></td>
                             <td> 
                                 <button class="btn btn-primary" onclick="window.location.href='<?= BASE_URL ?>/vendor-dashboard?page=edit_mobile&id=<?= $Pro['id'] ?>'">Edit</button>
-                                <button class="btn btn-danger" onclick="window.location.href='<?= BASE_URL ?>/vendor-dashboard?page=delete_mobile&id=<?= $Pro['id'] ?>'">Delete</button>
+                                <button class="btn btn-danger" onclick="delete_mobile(<?= $Pro['id'] ?>)">Delete</button>
                             </td>
 
                         </tr>
@@ -62,6 +62,53 @@ $Products = VendorProducts::get_by_vendor($_SESSION['Vendor_id']);
             </table>
         </div>
     </div>
+
+    <script>
+        function delete_mobile(id) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: '<?= BASE_URL ?>/vendor/AJAX/delete_mobile',
+                type: 'POST',
+                data: {
+                    m_id: id
+                },
+                success: function(data) {
+                    // Check the response from the server
+                    if (data.success) {
+                        Swal.fire('Success', 'Mobile deleted successfully', 'success').then(() => {
+                            window.location.reload();
+                        })
+                    }
+                    else {
+                        Swal.fire('Failed', data.message, 'error');
+                        console.log(data);
+                    }
+                },
+                error: function(data) {
+                    Swal.fire('Error', 'An error occurred while submitting the form', 'error');
+                    console.log(data);
+                }
+            });
+
+            Swal.close();
+        }
+
+        });
+
+
+        
+    }
+
+    </script>
 
     <script>
         $('#dataTable').DataTable({

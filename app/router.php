@@ -17,6 +17,8 @@ $routes = [
 
     '/run-scrap' => 'web_scrap/run.php',
     '/add_to_database' => 'web_scrap/add_to_database.php',
+
+    '/vendor/AJAX/delete_mobile' => 'controllers/vendor/delete_mobile.php',
     
 
     // admin routes
