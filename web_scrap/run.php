@@ -72,7 +72,7 @@ if (rename($oldCsvFileName, $destinationFolder . '/' . $newCsvFileName)) {
     if ($con->query($sql) === TRUE) {
         echo "Record inserted successfully";
 
-        sweetAlert('Scraping Completed. {$newCsvFileName}', 'success');
+        sweetAlert('Scraping Completed. ' . $newCsvFileName , 'success');
     } else {
         echo "Error inserting record: " . $con->error;
     }
