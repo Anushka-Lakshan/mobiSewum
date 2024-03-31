@@ -1,3 +1,4 @@
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <section class="header-content--left">
     <a href="<?= BASE_URL ?>/" class="brand-logo">
         <img src="<?= BASE_URL ?>/assets/images/logo.png" alt="Mobisewum logo" />
@@ -42,3 +43,24 @@
         </ul>
     </nav>
 </section>
+
+<?php
+
+if (isset($_SESSION['temp_msg'])) {
+    echo '
+                <script>
+                    Swal.fire({
+                        title: "' . $_SESSION['temp_msg'] . '",
+                        text: "' . (isset($_SESSION['temp_msg_secondery']) ? $_SESSION['temp_msg_secondery'] : '') . '",
+                        icon: "' . (isset($_SESSION['temp_msg_type']) ? $_SESSION['temp_msg_type'] : 'success') . '",
+                        showCancelButton: false,
+                        confirmButtonText: "Continue"
+                    });
+                </script>
+                ';
+    unset($_SESSION['temp_msg']);
+    unset($_SESSION['temp_msg_secondery']);
+    unset($_SESSION['temp_msg_type']);
+}
+
+?>

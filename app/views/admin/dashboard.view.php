@@ -83,7 +83,7 @@
                             <a class="nav-link <?php if ($subpage == 'online-vendors') echo 'active'; ?> " href="<?= BASE_URL ?>/admin-dashboard?page=online-vendors"> Online Vendors</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Mobile list</a>
+                        <a class="nav-link <?php if ($subpage == 'shops') echo 'active'; ?>" href="<?= BASE_URL ?>/admin-dashboard?page=shops">Registered Shops</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link <?php if ($subpage == 'admins') echo 'active'; ?>" href="<?= BASE_URL ?>/admin-dashboard?page=admins">Admins</a>

@@ -48,52 +48,65 @@ Class Shop
 		
 	}
 
-    public static function edit_brand($id, $name, $logo) {
+    public static function edit($id, $name, $address, $tel, $reg_no, $logo, $img)
+    {
         $DB = Database::getInstance();
 
+        include_once "app/core/Validator.php";
+
         $DBdata = array(
-            'name' => $name,
             'id' => $id,
-            'logo' => $logo
-
+            'name' => Validator::sanitizeInput($name),
+            'address' => Validator::sanitizeInput($address),
+            'tel' => Validator::sanitizeInput($tel),
+            'reg_no' => Validator::sanitizeInput($reg_no),
+            'logo' => Validator::sanitizeInput($logo),
+            'img' => Validator::sanitizeInput($img)
         );
 
-        
-        $query = "update brands set name = :name, logo = :logo where id = :id";
+        $query = "UPDATE shops SET name = :name, address = :address, tel = :tel, registration_no = :reg_no, logo = :logo, img = :img WHERE id = :id";
 
         $result = $DB->write($query, $DBdata);
 
-        if($result)
-        {
-            return true;
-        }else
-        {
-            return false;
-        }
+        return $result ? true : false;
     }
 
-    public static function delete_brand($id){
+    public static function delete($id)
+    {
         $DB = Database::getInstance();
 
-        $DBdata = array(
-            'id' => $id
-        );
+        $query = "DELETE FROM shops WHERE id = :id";
+        $result = $DB->write($query, ['id' => $id]);
 
-        
-        
-        $query = "delete from brands where id = :id";
-
-        $result = $DB->write($query, $DBdata);
-
-        if($result)
-        {
-            return true;
-        }else
-        {
-            return false;
-        }
+        return $result ? true : false;
     }
 
+    public static function get_shop_by_id($id)
+    {
+        $DB = Database::getInstance();
+        $query = "SELECT * FROM shops WHERE id = :id";
+        return $DB->read($query, ['id' => $id]);
+    }
 
+    public static function approve($id)
+    {
+        $DB = Database::getInstance();
+        $query = "UPDATE shops SET approved = 1 WHERE id = :id";
+        return $DB->write($query, ['id' => $id]);
+    }
+
+    public static function suspend($id)
+    {
+        $DB = Database::getInstance();
+        $query = "UPDATE shops SET suspended = 1 WHERE id = :id";
+        return $DB->write($query, ['id' => $id]);
+    }
+
+    public static function unsuspend($id)
+    {
+        $DB = Database::getInstance();
+        $query = "UPDATE shops SET suspended = 0 WHERE id = :id";
+        return $DB->write($query, ['id' => $id]);
+    }
 	
 }

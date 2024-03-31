@@ -1,6 +1,6 @@
 <?php
 
-if (!isset($_SESSION['Vendor_id'])) {
+if (!isset($_SESSION['Vendor_id']) || !isset($_SESSION['admin_name'])) {
     
     die();
 }

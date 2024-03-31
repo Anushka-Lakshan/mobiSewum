@@ -165,7 +165,7 @@ Class Vendor
         }
     }
 
-    public static function get_customer_by_id($id)
+    public static function get_vendor_by_id($id)
     {
         $DB = Database::getInstance();
 
@@ -266,7 +266,7 @@ Class Vendor
         $confirmPassword = $_POST['confirm_pass'];
     
         // Verify the current password
-        $userData  = self::get_customer_by_id($_SESSION['Customer_Id']);
+        $userData  = self::get_vendor_by_id($_SESSION['Customer_Id']);
         $currentPassword = hash('sha3-256', $currentPassword);
 
         if( $userData[0]['Password'] !== $currentPassword) {
