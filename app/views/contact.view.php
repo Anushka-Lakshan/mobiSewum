@@ -37,7 +37,7 @@
 
         <?php endif ?>
 
-        <?php if (count($errors) > 0) {
+        <?php if ($errors && count($errors) > 0) {
             echo '<div class="errors">';
             foreach ($errors as $error) {
                 echo    '<p>' . $error . '</p>';
@@ -50,7 +50,7 @@
             <form action="" method="POST" class="form-decor">
                 <h1><b>Contact US</b></h1>
                 <input type="text" placeholder="Name" required name="name"/>
-                <input type="tel" placeholder="Phone" maxlength="10" pattern="\d{1}" title="Please enter exactly 10 digits" required name="phone"/>
+                <input type="tel" placeholder="Phone" maxlength="10" required name="phone"/>
                 <input type="email" placeholder="Email" required name="email"/>
                 <textarea placeholder="Message" rows="4" required name="message"></textarea>
                 <button type="submit" href="/">SUBMIT</button>

@@ -31,9 +31,9 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link" href="#">Profile</a>
-                </li>
+                </li> -->
                 <li class="nav-item">
                     <a class="nav-link" onclick="logout()" href="javascript:void(0)">Logout</a>
                 </li>
@@ -87,6 +87,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link <?php if ($subpage == 'admins') echo 'active'; ?>" href="<?= BASE_URL ?>/admin-dashboard?page=admins">Admins</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link <?php if ($subpage == 'contact_us') echo 'active'; ?>" href="<?= BASE_URL ?>/admin-dashboard?page=contact_us">Contact Us</a>
                         </li>
                     </ul>
                 </div>

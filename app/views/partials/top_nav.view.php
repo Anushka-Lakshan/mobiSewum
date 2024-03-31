@@ -20,11 +20,7 @@
                     Browse by Brands
                 </a>
             </li>
-            <li class="list-item">
-                <a class="nav__link" href="#">
-                    Mobile Stores
-                </a>
-            </li>
+            
             <li class="list-item">
                 <a class="nav__link" href="<?= BASE_URL ?>/contact-us">
                     Contact Us
