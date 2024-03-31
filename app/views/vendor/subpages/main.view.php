@@ -1,28 +1,32 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+    <style>
+        .card {
+            height: 200px;
+        }
+
+        .card-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            text-decoration: none;
+        }
+    </style>
 <main role="main" class="col-9 ml-sm-auto col-lg-10 px-md-4">
     <div class="dashboard-header">
         <h1 class="h2">Dashboard</h1>
-        <p>This is a simple dashboard.</p>
+        <p>Vendor dashboard.</p>
     </div>
-    <div class="dashboard-cards">
-        <div class="dashboard-card">Card 1</div>
-        <div class="dashboard-card">Card 2</div>
-        <div class="dashboard-card">Card 3</div>
-    </div>
-    <table class="table-dashboard">
-        <tr>
-            <th>Column 1</th>
-            <th>Column 2</th>
-            <th>Column 3</th>
-        </tr>
-        <tr>
-            <td>Data 1</td>
-            <td>Data 2</td>
-            <td>Data 3</td>
-        </tr>
-        <tr>
-            <td>Data 4</td>
-            <td>Data 5</td>
-            <td>Data 6</td>
-        </tr>
-    </table>
+    <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card bg-danger">
+                    <a href="<?= BASE_URL ?>/vendor-dashboard?page=mobiles" class="card-link text-light">
+                        <i class="fas fa-chart-line fa-3x mr-3"></i>
+                        Manage Mobiles
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Add more cards for other admin functions -->
+        </div>
 </main>

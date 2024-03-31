@@ -14,6 +14,7 @@ $routes = [
     '/vendor-dashboard' => 'controllers/vendor/vendor-dashboard.php',
     '/browseByBrand' => 'controllers/browseByBrand.php',
     '/contact-us' => 'controllers/contactUs.php',
+    '/about' => 'controllers/about.php',
 
     '/run-scrap' => 'web_scrap/run.php',
     '/add_to_database' => 'web_scrap/add_to_database.php',

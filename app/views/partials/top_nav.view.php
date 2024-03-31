@@ -27,7 +27,7 @@
                 </a>
             </li>
             <li class="list-item">
-                <a class="nav__link" href="#">
+                <a class="nav__link" href="<?= BASE_URL ?>/about">
                     About Us
                 </a>
             </li>
