@@ -162,14 +162,22 @@
 
                     $brand = $value['vendor'];
 
+                    $scraped = $value['scraped'] === 1;
+
                     $count = count($value['items']);
 
             ?>
                     <div class="result-card">
                         <div class="card-top">
                             <div class="shop">
-                                <img src="<?= BASE_URL ?>/assets/images/company-logos/<?=$value['logo'] ?>" alt="geniusMobile">
-                                <span> <a href="<?= $value['vendor_link'] ?>" target="_blank"><?= $brand ?> </a></span>
+                                
+                                <?php if ($scraped) : ?>
+                                    <img src="<?= BASE_URL ?>/assets/images/company-logos/<?=$value['logo'] ?>" alt="geniusMobile">
+                                    <span> <a href="<?= $value['vendor_link'] ?>" target="_blank"><?= $brand ?> </a></span>
+                                <?php else : ?>
+                                    <img src="<?= BASE_URL ?>/assets/images/business/logos/<?=$value['shop_logo'] ?>" alt="geniusMobile">
+                                    <span> <a href="/vendor/<?= $value['vendor_id'] ?>" target="_blank"><?= $brand ?> </a></span>
+                                <?php endif; ?>
                             </div>
 
                             <div class="item-count">
@@ -188,7 +196,11 @@
 
                                     <tr>
                                         <td>
+                                        <?php if ($scraped) : ?>
                                             <img src='<?= $mobile['img'] ?>' alt='<?= $mobile['name'] ?>' onerror="this.src='./assets/images/error-phone.png'">
+                                        <?php else : ?>
+                                            <img src='<?= BASE_URL ?>/assets/images/mobile-images/<?= $mobile['img'] ?>' alt='<?= $mobile['name'] ?>' onerror="this.src='./assets/images/error-phone.png'">
+                                        <?php endif; ?>
                                         </td>
                                         <td>
                                             <a href='<?= $mobile['link'] ?>' target='_blank'> <?= $mobile['name'] ?> </a>
@@ -218,13 +230,21 @@
             } else {
                 foreach ($result as $mobile) {
 
+                    $scraped = $mobile['scraped'] === 1;
+                    $brand = $mobile['vendor'];
+
                 ?>
 
                     <div class="result-card single">
                         <div class="card-top">
                             <div class="shop">
-                                <img src="<?= BASE_URL ?>/assets/images/company-logos/<?=$mobile['logo'] ?>" alt="geniusMobile">
-                                <span><a href="<?= $mobile['vendor_link'] ?>" target="_blank"><?= $mobile['shop'] ?> </a> </span>
+                            <?php if ($scraped) : ?>
+                                    <img src="<?= BASE_URL ?>/assets/images/company-logos/<?=$mobile['logo'] ?>" alt="geniusMobile">
+                                    <span> <a href="<?= $mobile['vendor_link'] ?>" target="_blank"><?= $brand ?> </a></span>
+                                <?php else : ?>
+                                    <img src="<?= BASE_URL ?>/assets/images/business/logos/<?=$mobile['shop_logo'] ?>" alt="geniusMobile">
+                                    <span> <a href="/vendor/<?= $mobile['vendor_id'] ?>" target="_blank"><?= $brand ?> </a></span>
+                                <?php endif; ?>
                             </div>
 
                         </div>
@@ -233,7 +253,11 @@
                             <table class="item-table">
                                 <tr>
                                     <td>
-                                        <img src="<?= $mobile['img'] ?>" alt="<?= $mobile['name'] ?>" onerror="this.src='./assets/images/error-phone.png'">
+                                    <?php if ($scraped) : ?>
+                                            <img src='<?= $mobile['img'] ?>' alt='<?= $mobile['name'] ?>' onerror="this.src='./assets/images/error-phone.png'">
+                                        <?php else : ?>
+                                            <img src='<?= BASE_URL ?>/assets/images/mobile-images/<?= $mobile['img'] ?>' alt='<?= $mobile['name'] ?>' onerror="this.src='./assets/images/error-phone.png'">
+                                        <?php endif; ?>
                                     </td>
                                     <td>
                                         <a href="<?= $mobile['link'] ?>" target="_blank"><?= $mobile['name'] ?></a>

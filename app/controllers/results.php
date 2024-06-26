@@ -79,6 +79,18 @@ if(count($error) == 0){
 
 $resultCount = count($result);
 
+if($sort == "ASC"){
+    usort($result, function($a, $b) {
+        return $a['price_int'] <=> $b['price_int'];
+    });
+}
+else{
+    usort($result, function($a, $b) {
+        return $b['price_int'] <=> $a['price_int'];
+    });
+}
+
+
 // show($result);
 
 
@@ -89,9 +101,12 @@ foreach ($result as $r) {
 
     $groupedResults[$shop]['items'][] = $r;
     $groupedResults[$shop]['img'] = $r['img'];
-    $groupedResults[$shop]['vendor_link'] = $r['vendor_link'];
+    $groupedResults[$shop]['vendor_link'] = $r['vendor_link'] ?? "";
     $groupedResults[$shop]['vendor'] = $r['vendor'];
-    $groupedResults[$shop]['logo'] = $r['logo'];
+    $groupedResults[$shop]['logo'] = $r['logo'] ?? "";
+    $groupedResults[$shop]['scraped'] = $r['scraped'];
+    $groupedResults[$shop]['shop_logo'] = $r['shop_logo'] ?? "";
+    $groupedResults[$shop]['vendor_id'] = $r['vendor_id'] ?? "";
 
 
 }
