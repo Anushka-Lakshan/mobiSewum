@@ -69,7 +69,7 @@
 <div class="grid-container">
 
     <?php foreach ($brands as $brand): ?>
-        <div class="grid-item" style="cursor:pointer" onclick="window.location.href='<?= BASE_URL?>/mobiles?brand=<?= $brand['name'] ?>' ">
+        <div class="grid-item" style="cursor:pointer" onclick="window.location.href='<?= BASE_URL?>/mobiles?brand=<?= strtolower($brand['name']) ?>' ">
             <img src="<?= BASE_URL?>/assets/images/brands/<?= $brand['logo'] ?>" alt="" style="width:90%; height:90%; object-fit:contain; margin:auto">
             <p style="text-align:center"><?= $brand['name'] ?></p>
         </div>
