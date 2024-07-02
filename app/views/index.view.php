@@ -62,6 +62,13 @@
   </div>
 
   <div class="container">
+    <div class="CTA">
+    <h1>
+    Uncover the <span> Best Mobile Deals </span> with Ease
+    </h1>
+    <p>Find Your Perfect Mobile Deal Now!</p>
+    </div>
+    
     <main class="search-container">
       <form action="<?= BASE_URL ?>/mobiles" method="get" id="home-search">
         <div class="main-search">
@@ -128,6 +135,23 @@
           </script>
 
           <style>
+
+            .CTA{
+              text-align: center;
+              margin-top: 150px;
+              
+            }
+
+            .CTA h1{
+              font-size: 2.5rem;
+              /* margin-bottom: 20px; */
+            }
+
+            .CTA h1 span{
+              color: #1757b8;
+              /* font-style: italic; */
+            }
+
             ::selection {
               color: #fff;
               background: #1757b8;
@@ -237,6 +261,8 @@
       </form>
     </main>
   </div>
+
+  <?php require_once './app/views/partials/footer.view.php' ?>
 
   <script src="./assets/js/app.js"></script>
   <script src="./assets/js/price-range.js"></script>

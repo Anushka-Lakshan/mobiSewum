@@ -147,7 +147,7 @@
         }
     </style>
 
-
+<?php require_once './app/views/partials/footer.view.php' ?>
 
     <script src="./assets/js/app.js"></script>
     <!-- <script src="./assets/js/price-range.js"></script> -->

@@ -66,7 +66,7 @@
 
         }
 
-        .tipDetails p a{
+        .tipDetails p a {
             color: #fff;
             text-decoration: none;
         }
@@ -284,118 +284,37 @@
                                     </div>
                                 <?php else : ?>
                                     <img src="<?= BASE_URL ?>/assets/images/business/logos/<?= $value['shop_logo'] ?>" alt="<?= $brand ?>">
-                                    <span> <a href="/vendor/<?= $value['vendor_id'] ?>" target="_blank"><?= $brand ?> </a></span>
+                                    <span> <a href="<?= BASE_URL ?>/vendor?vendor=<?= $value['vendor_id'] ?>" target="_blank"><?= $brand ?> </a></span>
 
                                     <div class="tooltiptext">
                                         <div class="tipRow">
                                             <img src="<?= BASE_URL ?>/assets/images/business/logos/<?= $value['shop_logo'] ?>" alt="<?= $brand ?>">
                                             <div class="tipDetails">
-                                                <p><a href="/vendor/<?= $value['vendor_id'] ?>" target="_blank"><?= $brand ?> </a></p>
+                                                <p><a href="<?= BASE_URL ?>/vendor?vendor=<?= $value['vendor_id'] ?>" target="_blank"><?= $brand ?> </a></p>
                                                 <!-- <span>Buy Online</span> -->
                                                 <span>Visit Shop</span>
                                             </div>
                                         </div>
                                     </div>
-                                    <?php endif; ?>
+                                <?php endif; ?>
 
 
-                                    </div>
-
-                                    <div class="item-count">
-                                        <?= $count ?> mobiles
-                                    </div>
                             </div>
 
-                            <div class="card-bottom">
-                                <table class="item-table">
-
-                                    <?php
-
-                                    foreach ($value['items'] as $mobile) {
-
-                                    ?>
-
-                                        <tr>
-                                            <td>
-                                                <?php if ($scraped) : ?>
-                                                    <img src='<?= $mobile['img'] ?>' alt='<?= $mobile['name'] ?>' onerror="this.src='./assets/images/error-phone.png'">
-                                                <?php else : ?>
-                                                    <img src='<?= BASE_URL ?>/assets/images/mobile-images/<?= $mobile['img'] ?>' alt='<?= $mobile['name'] ?>' onerror="this.src='./assets/images/error-phone.png'">
-                                                <?php endif; ?>
-                                            </td>
-                                            <td>
-                                                <a href='<?= $mobile['link'] ?>' target='_blank'> <?= $mobile['name'] ?> </a>
-
-                                                <?= $mobile['in_stock'] == 0 ? "<span class='stock-badge'>Out of stock</span> " : " " ?>
-
-
-
-                                            </td>
-                                            <td>
-                                                <?= $mobile['price'] ?>
-                                            </td>
-                                        </tr>
-
-                                    <?php
-                                    }
-
-                                    ?>
-
-                                </table>
+                            <div class="item-count">
+                                <?= $count ?> mobiles
                             </div>
                         </div>
 
+                        <div class="card-bottom">
+                            <table class="item-table">
 
-                    <?php
-                }
-            } else {
-                foreach ($result as $mobile) {
+                                <?php
 
-                    $scraped = $mobile['scraped'] === 1;
-                    $brand = $mobile['vendor'];
+                                foreach ($value['items'] as $mobile) {
 
-                    ?>
+                                ?>
 
-                        <div class="result-card single">
-                            <div class="card-top">
-                                <div class="shop tooltip">
-                                    <?php if ($scraped) : ?>
-                                        <img src="<?= BASE_URL ?>/assets/images/company-logos/<?= $mobile['logo'] ?>" alt="<?= $brand ?>">
-                                        <span> <a href="<?= $mobile['vendor_link'] ?>" target="_blank"><?= $brand ?> </a></span>
-
-                                        <div class="tooltiptext">
-                                        <div class="tipRow">
-                                        <img src="<?= BASE_URL ?>/assets/images/company-logos/<?= $mobile['logo'] ?>" alt="<?= $brand ?>">
-                                            <div class="tipDetails">
-                                                <p><a href="<?= $value['vendor_link'] ?>" target="_blank"><?= $brand ?> </a></p>
-                                                <span>Buy Online</span>
-                                                <span>Shop</span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <?php else : ?>
-
-                                        <img src="<?= BASE_URL ?>/assets/images/business/logos/<?= $mobile['shop_logo'] ?>" alt="<?= $brand ?>">
-                                        <span> <a href="/vendor/<?= $mobile['vendor_id'] ?>" target="_blank"><?= $brand ?> </a></span>
-
-                                        <div class="tooltiptext">
-                                        <div class="tipRow">
-                                        <img src="<?= BASE_URL ?>/assets/images/business/logos/<?= $mobile['shop_logo'] ?>" alt="<?= $brand ?>">
-                                            <div class="tipDetails">
-                                                <p><a href="/vendor/<?= $value['vendor_id'] ?>" target="_blank"><?= $brand ?> </a></p>
-                                                <!-- <span>Buy Online</span> -->
-                                                <span>Visit Shop</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <?php endif; ?>
-                                </div>
-
-                            </div>
-
-                            <div class="card-bottom">
-                                <table class="item-table">
                                     <tr>
                                         <td>
                                             <?php if ($scraped) : ?>
@@ -405,38 +324,129 @@
                                             <?php endif; ?>
                                         </td>
                                         <td>
+                                        <?php if ($scraped) : ?>
                                             <a href="<?= $mobile['link'] ?>" target="_blank"><?= $mobile['name'] ?></a>
+                                        <?php else : ?>
+                                            <a href="<?= BASE_URL ?>/vendor?vendor=<?= $mobile['vendor_id'] ?>" target="_blank"><?= $mobile['name'] ?></a>
+                                        <?php endif; ?>
+
                                             <?= $mobile['in_stock'] == 0 ? "<span class='stock-badge'>Out of stock</span> " : " " ?>
+
+
+
                                         </td>
                                         <td>
                                             <?= $mobile['price'] ?>
                                         </td>
                                     </tr>
 
+                                <?php
+                                }
 
-                                </table>
-                            </div>
+                                ?>
+
+                            </table>
                         </div>
+                    </div>
 
 
                 <?php
                 }
-            }
+            } else {
+                foreach ($result as $mobile) {
+
+                    $scraped = $mobile['scraped'] === 1;
+                    $brand = $mobile['vendor'];
+
                 ?>
 
+                    <div class="result-card single">
+                        <div class="card-top">
+                            <div class="shop tooltip">
+                                <?php if ($scraped) : ?>
+                                    <img src="<?= BASE_URL ?>/assets/images/company-logos/<?= $mobile['logo'] ?>" alt="<?= $brand ?>">
+                                    <span> <a href="<?= $mobile['vendor_link'] ?>" target="_blank"><?= $brand ?> </a></span>
+
+                                    <div class="tooltiptext">
+                                        <div class="tipRow">
+                                            <img src="<?= BASE_URL ?>/assets/images/company-logos/<?= $mobile['logo'] ?>" alt="<?= $brand ?>">
+                                            <div class="tipDetails">
+                                                <p><a href="<?= $value['vendor_link'] ?>" target="_blank"><?= $brand ?> </a></p>
+                                                <span>Buy Online</span>
+                                                <span>Shop</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                <?php else : ?>
+
+                                    <img src="<?= BASE_URL ?>/assets/images/business/logos/<?= $mobile['shop_logo'] ?>" alt="<?= $brand ?>">
+                                    <span> <a href="<?= BASE_URL ?>/vendor?vendor=<?= $mobile['vendor_id'] ?>" target="_blank"><?= $brand ?> </a></span>
+
+                                    <div class="tooltiptext">
+                                        <div class="tipRow">
+                                            <img src="<?= BASE_URL ?>/assets/images/business/logos/<?= $mobile['shop_logo'] ?>" alt="<?= $brand ?>">
+                                            <div class="tipDetails">
+                                                <p><a href="<?= BASE_URL ?>/vendor?vendor=<?= $mobile['vendor_id'] ?>" target="_blank"><?= $brand ?> </a></p>
+                                                <!-- <span>Buy Online</span> -->
+                                                <span>Visit Shop</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+
+                        </div>
+
+                        <div class="card-bottom">
+                            <table class="item-table">
+                                <tr>
+                                    <td>
+                                        <?php if ($scraped) : ?>
+                                            <img src='<?= $mobile['img'] ?>' alt='<?= $mobile['name'] ?>' onerror="this.src='./assets/images/error-phone.png'">
+                                        <?php else : ?>
+                                            <img src='<?= BASE_URL ?>/assets/images/mobile-images/<?= $mobile['img'] ?>' alt='<?= $mobile['name'] ?>' onerror="this.src='./assets/images/error-phone.png'">
+                                        <?php endif; ?>
+                                    </td>
+                                    <td>
+                                        <?php if ($scraped) : ?>
+                                            <a href="<?= $mobile['link'] ?>" target="_blank"><?= $mobile['name'] ?></a>
+                                        <?php else : ?>
+                                            <a href="<?= BASE_URL ?>/vendor?vendor=<?= $value['vendor_id'] ?>" target="_blank"><?= $mobile['name'] ?></a>
+                                        <?php endif; ?>
+                                        <!-- <a href="<?= $mobile['link'] ?>" target="_blank"><?= $mobile['name'] ?></a> -->
+                                        <?= $mobile['in_stock'] == 0 ? "<span class='stock-badge'>Out of stock</span> " : " " ?>
+                                    </td>
+                                    <td>
+                                        <?= $mobile['price'] ?>
+                                    </td>
+                                </tr>
 
 
-
+                            </table>
+                        </div>
                     </div>
+
+
+            <?php
+                }
+            }
+            ?>
+
+
+
+
+        </div>
 
     </main>
 
+    <?php require_once './app/views/partials/footer.view.php' ?>
 
 
     <script src="./assets/js/app.js"></script>
     <!-- <script src="./assets/js/price-range.js"></script> -->
 
-    
+
 </body>
 
 </html>
