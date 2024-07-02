@@ -10,17 +10,22 @@
 </head>
 
 <body>
-  <div class="container-nav">
-    <header class="site-header">
-      <div class="header__content--flow">
+  
+  <div class="result-header" style="margin-bottom: 40px;">
+        <div class="container-nav">
+            <header class="site-header">
+                <div class="header__content--flow">
+
+                    <?php require 'partials/top_nav.view.php'; ?>
+                </div>
+            </header>
+        </div>
+
         
-        <?php require 'partials/top_nav.view.php'; ?>
-      </div>
-    </header>
-  </div>
+    </div>
 
   <div class="container">
-  <section class="section_all bg-light" id="about">
+  <section class="section_all " id="about">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
